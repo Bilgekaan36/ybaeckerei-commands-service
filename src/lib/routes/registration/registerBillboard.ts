@@ -23,11 +23,9 @@ export const registerBillboard = ({ eventQueue }: { eventQueue: any }) => {
         billboardImageUrl,
       });
       const event = {
-        eventId: uuidv4(),
-        eventType: 'BillboardRegistered',
-        entityType: 'billboard',
-        createDate: new Date(),
-        eventData: validatedBillboard,
+        streamId: 123,
+        type: 'BillboardRegistered',
+        data: validatedBillboard,
       };
 
       await addJob(event);
