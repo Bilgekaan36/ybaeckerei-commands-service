@@ -9,7 +9,7 @@ import { redisConnection } from './redis-connection';
   const logger = flaschenpost.getLogger();
 
   // Reuse the ioredis instance
-  const eventQueue = new Queue('eventqueue', {
+  const eventQueue = new Queue('eventQueue', {
     connection: redisConnection,
   });
 
