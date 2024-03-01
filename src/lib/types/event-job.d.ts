@@ -1,5 +1,5 @@
 export interface EventJob {
   streamId: 'Billboard' | 'Category';
-  type: 'BillboardRegistered' | 'BillboardRemoved';
+  type: 'BillboardRegistered' | 'BillboardRemoved' | 'CategoryRegistered';
   data: any;
 }

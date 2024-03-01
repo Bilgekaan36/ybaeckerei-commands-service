@@ -40,7 +40,7 @@ export const getApi = ({ eventQueue }: { eventQueue: any }) => {
     registerBillboard({ eventQueue })
   );
   // api.post('/registration/register-store', registerStore({ ws }));
-  // api.post('/registration/register-category', registerCategory({ ws }));
+  api.post('/registration/register-category', registerCategory({ eventQueue }));
   // api.post('/registration/register-variant', registerVariant({ ws }));
   // api.post('/registration/register-size', registerSize({ ws }));
   // api.post('/registration/register-image', registerImage({ ws }));

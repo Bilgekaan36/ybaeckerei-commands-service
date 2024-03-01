@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
 import { v4 as uuidv4 } from 'uuid';
-import { EventJob } from 'lib/types/eventjob';
+import { EventJob } from 'lib/types/event-job';
 
 export const registerBillboard = ({ eventQueue }: { eventQueue: any }) => {
   async function addJob(eventJob: EventJob) {
-    await eventQueue.add('BillboardRegistered', eventJob, {
+    await eventQueue.add(eventJob.type, eventJob, {
       removeOnComplete: 1000,
       removeOnFail: 3000,
     });
