@@ -1,5 +1,7 @@
+import { EventType, StreamId } from './utility-types';
+
 export interface EventJob {
-  streamId: 'Billboard' | 'Category';
-  type: 'BillboardRegistered' | 'BillboardRemoved' | 'CategoryRegistered';
+  streamId: StreamId;
+  type: EventType;
   data: any;
 }
