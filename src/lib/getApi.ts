@@ -39,8 +39,8 @@ export const getApi = ({ eventQueue }: { eventQueue: any }) => {
     '/registration/register-billboard',
     registerBillboard({ eventQueue })
   );
-  // api.post('/registration/register-store', registerStore({ ws }));
   api.post('/registration/register-category', registerCategory({ eventQueue }));
+  // api.post('/registration/register-store', registerStore({ ws }));
   // api.post('/registration/register-variant', registerVariant({ ws }));
   // api.post('/registration/register-size', registerSize({ ws }));
   // api.post('/registration/register-image', registerImage({ ws }));
@@ -55,8 +55,8 @@ export const getApi = ({ eventQueue }: { eventQueue: any }) => {
   // api.post('/administration/editSize', editSize({ ws }));
   // api.post('/administration/editVariant', editVariant({ ws }));
   // api.post('/administration/removeStore', removeStore({ ws }));
-  // api.post('/administration/removeBillboard', removeBillboard({ ws }));
-  // api.post('/administration/removeCategory', removeCategory({ ws }));
+  api.post('/administration/removeBillboard', removeBillboard({ eventQueue }));
+  api.post('/administration/removeCategory', removeCategory({ eventQueue }));
   // api.post('/administration/removeCustomer', removeCustomer({ ws }));
   // api.post('/administration/removeImage', removeImage({ ws }));
   // api.post('/administration/removeProduct', removeProduct({ ws }));
