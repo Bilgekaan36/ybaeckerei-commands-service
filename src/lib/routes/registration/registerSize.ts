@@ -5,7 +5,9 @@ import { z } from 'zod';
 
 export const registerSize = ({ eventQueue }: any) => {
   return async (req: Request, res: Response) => {
-    const { sizeValue, sizeType } = req.body;
+    const { sizeValue: sizeValueAsString, sizeType } = req.body;
+
+    const sizeValue = Number(sizeValueAsString);
 
     const SizeSchema = z.object({
       sizeValue: z.number(),

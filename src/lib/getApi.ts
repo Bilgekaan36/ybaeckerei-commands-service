@@ -54,14 +54,14 @@ export const getApi = ({ eventQueue }: { eventQueue: any }) => {
   // api.post('/administration/editProduct', editProduct({ ws }));
   // api.post('/administration/editSize', editSize({ ws }));
   // api.post('/administration/editVariant', editVariant({ ws }));
-  // api.post('/administration/removeStore', removeStore({ ws }));
+  api.post('/administration/removeStore', removeStore({ eventQueue }));
   api.post('/administration/removeBillboard', removeBillboard({ eventQueue }));
   api.post('/administration/removeCategory', removeCategory({ eventQueue }));
-  // api.post('/administration/removeCustomer', removeCustomer({ ws }));
-  // api.post('/administration/removeImage', removeImage({ ws }));
-  // api.post('/administration/removeProduct', removeProduct({ ws }));
-  // api.post('/administration/removeSize', removeSize({ ws }));
-  // api.post('/administration/removeVariant', removeVariant({ ws }));
+  api.post('/administration/removeCustomer', removeCustomer({ eventQueue }));
+  api.post('/administration/removeImage', removeImage({ eventQueue }));
+  api.post('/administration/removeProduct', removeProduct({ eventQueue }));
+  api.post('/administration/removeSize', removeSize({ eventQueue }));
+  api.post('/administration/removeVariant', removeVariant({ eventQueue }));
   // api.post('/purchasing/checkoutOrder', checkoutOrder({ ws }));
   // api.post('/purchasing/payOrder', payOrder({ ws }));
 
