@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
+import { EventJob } from '../../../types/event-job';
+import { addJob } from '../../../utils/addJob';
 import { z } from 'zod';
 
-export const removeCustomer = () => {
+export const removeCustomer = ({ eventQueue }: any) => {
   return async (req: Request, res: Response) => {
     const { customerId } = req.body;
 
@@ -13,10 +15,16 @@ export const removeCustomer = () => {
       const validatedCustomer = CustomerSchema.parse({
         customerId,
       });
-      // await store.removeCustomer(validatedCustomer);
+      const eventJob: EventJob = {
+        streamId: 'Customer',
+        type: 'CustomerRemoved',
+        data: validatedCustomer,
+      };
+
+      await addJob({ eventQueue, eventJob });
+      res.json({ customerId });
     } catch (err: any) {
       return res.status(400).end();
     }
-    res.json({ customerId });
   };
 };

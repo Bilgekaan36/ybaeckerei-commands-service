@@ -40,12 +40,12 @@ export const getApi = ({ eventQueue }: { eventQueue: any }) => {
     registerBillboard({ eventQueue })
   );
   api.post('/registration/register-category', registerCategory({ eventQueue }));
-  // api.post('/registration/register-store', registerStore({ ws }));
-  // api.post('/registration/register-variant', registerVariant({ ws }));
-  // api.post('/registration/register-size', registerSize({ ws }));
-  // api.post('/registration/register-image', registerImage({ ws }));
-  // api.post('/registration/register-product', registerProduct({ ws }));
-  // api.post('/registration/register-customer', registerCustomer({ ws }));
+  api.post('/registration/register-store', registerStore({ eventQueue }));
+  api.post('/registration/register-variant', registerVariant({ eventQueue }));
+  api.post('/registration/register-size', registerSize({ eventQueue }));
+  api.post('/registration/register-image', registerImage({ eventQueue }));
+  api.post('/registration/register-product', registerProduct({ eventQueue }));
+  api.post('/registration/register-customer', registerCustomer({ eventQueue }));
   // api.post('/administration/editStore', editStore({ ws }));
   // api.post('/administration/editBillboard', editBillboard({ ws }));
   // api.post('/administration/editCategory', editCategory({ ws }));

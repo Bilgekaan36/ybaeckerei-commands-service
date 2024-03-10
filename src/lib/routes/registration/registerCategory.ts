@@ -1,16 +1,9 @@
 import { Request, Response } from 'express';
-import { EventJob } from 'lib/types/event-job';
+import { EventJob } from '../../types/event-job';
+import { addJob } from '../../utils/addJob';
 import { z } from 'zod';
 
-export const registerCategory = ({ eventQueue }: { eventQueue: any }) => {
-  async function addJob(eventJob: EventJob) {
-    await eventQueue.add(eventJob.type, eventJob, {
-      removeOnComplete: 1000,
-      removeOnFail: 3000,
-    });
-    await eventQueue.close();
-  }
-
+export const registerCategory = ({ eventQueue }: any) => {
   return async (req: Request, res: Response) => {
     const { categoryName, billboardId } = req.body;
 
@@ -30,7 +23,7 @@ export const registerCategory = ({ eventQueue }: { eventQueue: any }) => {
         data: validatedCategory,
       };
 
-      await addJob(eventJob);
+      await addJob({ eventQueue, eventJob });
       res.json({ categoryName });
     } catch (err: any) {
       return res.status(400).end();

@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
+import { EventJob } from '../../../types/event-job';
+import { addJob } from '../../../utils/addJob';
 import { z } from 'zod';
 
-export const removeVariant = () => {
+export const removeVariant = ({ eventQueue }: any) => {
   return async (req: Request, res: Response) => {
     const { variantId } = req.body;
 
@@ -13,11 +15,16 @@ export const removeVariant = () => {
       const validatedVariant = VariantSchema.parse({
         variantId,
       });
-      // await store.removeVariant(validatedVariant);
+      const eventJob: EventJob = {
+        streamId: 'Variant',
+        type: 'VariantRemoved',
+        data: validatedVariant,
+      };
+
+      await addJob({ eventQueue, eventJob });
+      res.json({ variantId });
     } catch (err: any) {
       return res.status(400).end();
     }
-
-    res.json({ variantId });
   };
 };

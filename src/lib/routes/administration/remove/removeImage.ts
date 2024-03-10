@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
+import { EventJob } from '../../../types/event-job';
+import { addJob } from '../../../utils/addJob';
 import { z } from 'zod';
 
-export const removeImage = () => {
+export const removeImage = ({ eventQueue }: any) => {
   return async (req: Request, res: Response) => {
     const { imageId } = req.body;
 
@@ -13,11 +15,16 @@ export const removeImage = () => {
       const validatedImage = ImageSchema.parse({
         imageId,
       });
-      // await store.removeImage(validatedImage);
+      const eventJob: EventJob = {
+        streamId: 'Image',
+        type: 'ImageRemoved',
+        data: validatedImage,
+      };
+
+      await addJob({ eventQueue, eventJob });
+      res.json({ imageId });
     } catch (err: any) {
       return res.status(400).end();
     }
-
-    res.json({ imageId });
   };
 };
